@@ -1,0 +1,32 @@
+name: Docker Build, Push, and Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master # Change this to your default branch name if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      
+      - name: Build Docker image
+        run: |
+          docker build -t cyberbullying-detection .
+
+      - name: Tag Docker image
+        run: |
+          docker tag cyberbullying-detection jaysongor/cyberbullying
+
+      - name: Push Docker image
+        run: |
+          docker push jaysongor/cyberbullying
+
+
+      
+            echo "Deployment completed successfully! 🚀"
+ 
